@@ -16,9 +16,11 @@ namespace TSD_BookCollection
             get => selectedBook;
             set
             {
+                if (selectedBook != value)
+                {
                     selectedBook = value;
-                     PropertyChanged?.Invoke(this,
-               new PropertyChangedEventArgs(nameof(selectedBook)));
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -26,15 +28,15 @@ namespace TSD_BookCollection
         {
             InitializeComponent();
             Books = MyBookCollection.GetMyCollection();
-            SelectedBook = Books[0]; // Set default selected book
+            SelectedBook = Books[0];
             DataContext = this;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

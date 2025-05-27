@@ -18,6 +18,4 @@ C:\Users\Mich2\OneDrive\Pulpit\Nowy Początek\SE sem1\TSD_BookCollection\obj\Deb
 C:\Users\Mich2\OneDrive\Pulpit\Nowy Początek\SE sem1\TSD_BookCollection\obj\Debug\net8.0-windows\TSD_BookCollection.pdb
 C:\Users\Mich2\OneDrive\Pulpit\Nowy Początek\SE sem1\TSD_BookCollection\obj\Debug\net8.0-windows\TSD_BookCollection.genruntimeconfig.cache
 C:\Users\Mich2\OneDrive\Pulpit\Nowy Początek\SE sem1\TSD_BookCollection\obj\Debug\net8.0-windows\ref\TSD_BookCollection.dll
-C:\Users\Mich2\OneDrive\Pulpit\Nowy Początek\SE sem1\TSD_BookCollection\obj\Debug\net8.0-windows\BookDetailsControl.baml
-C:\Users\Mich2\OneDrive\Pulpit\Nowy Początek\SE sem1\TSD_BookCollection\obj\Debug\net8.0-windows\BookDetailsControl.g.cs
-C:\Users\Mich2\OneDrive\Pulpit\Nowy Początek\SE sem1\TSD_BookCollection\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\Mich2\OneDrive\Pulpit\Nowy Początek\SE sem1\TSD_BookCollection\obj\Debug\net8.0-windows\TSD_BookCollection_MarkupCompile.lref
