@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace TSD_BookCollection
 {
@@ -9,7 +10,7 @@ namespace TSD_BookCollection
     {
         private Book selectedBook;
 
-        public List<Book> Books { get; set; }
+public ObservableCollection<Book> Books { get; set; }
 
         public Book SelectedBook
         {
@@ -27,7 +28,7 @@ namespace TSD_BookCollection
         public MainWindow()
         {
             InitializeComponent();
-            Books = MyBookCollection.GetMyCollection();
+            Books = new ObservableCollection<Book>(MyBookCollection.GetMyCollection());
             SelectedBook = Books[0];
             DataContext = this;
         }
@@ -38,5 +39,34 @@ namespace TSD_BookCollection
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private void AddBook_Click(object sender, RoutedEventArgs e)
+        {
+            int nextId = Books.Any() ? Books.Max(b => b.Id) + 1 : 1;
+            var newBook = new Book(nextId)
+            {
+                Title = "New Book",
+                Author = "Author",
+                Year = 2025,
+                Format = BookFormat.EBook
+            };
+            Books.Add(newBook);
+            SelectedBook = newBook; // Set the newly added book as selected
+            OnPropertyChanged(nameof(Books));
+            OnPropertyChanged(nameof(SelectedBook)); // Notify UI
+        }
+
+
+        private void DeleteBook_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedBook != null)
+            {
+                Books.Remove(SelectedBook);
+                SelectedBook = Books.FirstOrDefault(); // or null
+                OnPropertyChanged(nameof(Books));
+                OnPropertyChanged(nameof(SelectedBook)); // Notify UI
+            }
+        }
+
     }
 }

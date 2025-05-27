@@ -50,6 +50,10 @@
 
             <StackPanel Margin="10" Grid.Column="0">
                 <TextBlock Text="My Books:" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" />
+                <Button Content="Add Book" Grid.Row="2" Margin="10"
+        Click="AddBook_Click"
+        HorizontalAlignment="Left"
+        Padding="5,2"/>
 
                 <!-- Nagłówki kolumn -->
                 <Border BorderBrush="Gray" BorderThickness="1" Margin="0,0,0,5">
@@ -72,11 +76,16 @@
 
                 <!-- Lista książek -->
                 <ListBox ItemsSource="{Binding Books}"
-                         SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
-                         ItemTemplate="{StaticResource BookTemplate}"
-                         BorderBrush="Gray"
-                         BorderThickness="1"
-                         HorizontalContentAlignment="Stretch" />
+         SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
+         ItemTemplate="{StaticResource BookTemplate}"
+         BorderBrush="Gray"
+         BorderThickness="1"
+         HorizontalContentAlignment="Stretch"
+         ScrollViewer.VerticalScrollBarVisibility="Auto"
+         MaxHeight="300" />
+
+
+                         
             </StackPanel>
 
 <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Padding="10" Margin="10">
@@ -109,6 +118,7 @@
             <CheckBox IsChecked="{Binding SelectedBook.IsRead, RelativeSource={RelativeSource AncestorType=Window}, Mode=TwoWay}" 
                       Content="Read" />
         </StackPanel>
+          <Button Content="Delete Book" Click="DeleteBook_Click" Background="Tomato" Foreground="White"/>
     </StackPanel>
 </Border>
 
