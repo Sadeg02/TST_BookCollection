@@ -3,49 +3,36 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Book Collection" Height="450" Width="800">
 
-<Window.Resources>
-    <DataTemplate x:Key="BookTemplate">
-        <Border BorderBrush="Gray" BorderThickness="0,0,0,1"> <!-- pozioma linia -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="Auto" /> <!-- separator -->
-                    <ColumnDefinition Width="4*" />
-                    <ColumnDefinition Width="Auto" /> <!-- separator -->
-                    <ColumnDefinition Width="1*" />
-                </Grid.ColumnDefinitions>
+    <Window.Resources>
+        <DataTemplate x:Key="BookTemplate">
+            <Border BorderBrush="Gray" BorderThickness="0,0,0,1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="Auto" /> <!-- separator -->
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="Auto" /> <!-- separator -->
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
 
-                <!-- ID -->
-                <TextBlock Grid.Column="0" Text="{Binding Id}" Padding="5" />
-
-                <!-- Pionowa linia -->
-                <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1,0,0,0" />
-
-                <!-- Title -->
-                <TextBlock Grid.Column="2" Text="{Binding Title}" Padding="5" />
-
-                <!-- Pionowa linia -->
-                <Border Grid.Column="3" BorderBrush="Gray" BorderThickness="1,0,0,0" />
-
-                <!-- IsRead -->
-                <TextBlock Grid.Column="4" Text="{Binding IsRead}" Padding="5" HorizontalAlignment="Center" />
-            </Grid>
-        </Border>
-    </DataTemplate>
-</Window.Resources>
-
-
-
-
+                    <TextBlock Grid.Column="0" Text="{Binding Id}" Padding="5" />
+                    <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1,0,0,0" />
+                    <TextBlock Grid.Column="2" Text="{Binding Title}" Padding="5" TextWrapping="Wrap" />
+                    <Border Grid.Column="3" BorderBrush="Gray" BorderThickness="1,0,0,0" />
+                    <TextBlock Grid.Column="4" Text="{Binding IsRead}" Padding="5" HorizontalAlignment="Center" />
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Header" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" />
+        <TextBlock Grid.Row="0" Text="Header" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="10" />
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -53,48 +40,63 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-<StackPanel Margin="10" Grid.Column="0">
-    <TextBlock Text="My Books:" FontSize="16" FontWeight="Bold" Margin="0,0,0,30" />
+            <StackPanel Margin="10" Grid.Column="0">
+                <TextBlock Text="My Books:" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" />
 
-    <Border BorderBrush="Gray" BorderThickness="1">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
+                <!-- Nagłówki kolumn -->
+                <Border BorderBrush="Gray" BorderThickness="1" Margin="0,0,0,5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="4*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" Text="ID" FontWeight="Bold" Padding="5" />
-        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1,0,0,0" />
-        
-        <TextBlock Grid.Column="2" Text="Title" FontWeight="Bold" Padding="5" />
-        <Border Grid.Column="3" BorderBrush="Gray" BorderThickness="1,0,0,0" />
-        
-        <TextBlock Grid.Column="4" Text="IsRead" FontWeight="Bold" Padding="5" HorizontalAlignment="Center"/>
-    </Grid>
+                        <TextBlock Grid.Column="0" Text="ID" FontWeight="Bold" Padding="5" />
+                        <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1,0,0,0" />
+                        <TextBlock Grid.Column="2" Text="Title" FontWeight="Bold" Padding="5" />
+                        <Border Grid.Column="3" BorderBrush="Gray" BorderThickness="1,0,0,0" />
+                        <TextBlock Grid.Column="4" Text="IsRead" FontWeight="Bold" Padding="5" HorizontalAlignment="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- Lista książek -->
+                <ListBox ItemsSource="{Binding Books}"
+                         SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
+                         ItemTemplate="{StaticResource BookTemplate}"
+                         BorderBrush="Gray"
+                         BorderThickness="1"
+                         HorizontalContentAlignment="Stretch" />
+            </StackPanel>
+
+            <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Padding="10" Margin="10">
+    <StackPanel>
+        <TextBlock Text="Book Details" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
+
+        <TextBlock Text="ID:" FontWeight="Bold" />
+        <TextBlock Text="{Binding SelectedBook.Id, RelativeSource={RelativeSource AncestorType=Window}}" Margin="0,0,0,10" />
+
+        <TextBlock Text="Title:" FontWeight="Bold" />
+        <TextBlock Text="{Binding SelectedBook.Title, RelativeSource={RelativeSource AncestorType=Window}}" TextWrapping="Wrap" Margin="0,0,0,10" />
+
+        <TextBlock Text="Author:" FontWeight="Bold" />
+        <TextBlock Text="{Binding SelectedBook.Author, RelativeSource={RelativeSource AncestorType=Window}}" Margin="0,0,0,10" />
+
+        <TextBlock Text="Year:" FontWeight="Bold" />
+        <TextBlock Text="{Binding SelectedBook.Year, RelativeSource={RelativeSource AncestorType=Window}}" Margin="0,0,0,10" />
+
+        <TextBlock Text="Format:" FontWeight="Bold" />
+        <TextBlock Text="{Binding SelectedBook.Format, RelativeSource={RelativeSource AncestorType=Window}}" Margin="0,0,0,10" />
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <CheckBox IsChecked="{Binding SelectedBook.IsRead, RelativeSource={RelativeSource AncestorType=Window}}" IsEnabled="False" Content="Read" />
+        </StackPanel>
+    </StackPanel>
 </Border>
-
-
-    <ListBox ItemsSource="{Binding Books}"
-         ItemTemplate="{StaticResource BookTemplate}"
-         BorderBrush="Gray"
-         BorderThickness="1"
-         HorizontalContentAlignment="Stretch" />
-</StackPanel>
-
-
-
-
-            <TextBlock Grid.Column="1"
-                       Text="Right Pane"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="16"
-                       FontStyle="Italic" />
         </Grid>
 
-        <TextBlock Grid.Row="2" Text="Footer" HorizontalAlignment="Center" VerticalAlignment="Center" FontStyle="Italic" />
+        <TextBlock Grid.Row="2" Text="Footer" HorizontalAlignment="Center" VerticalAlignment="Center" FontStyle="Italic" Margin="10" />
     </Grid>
 </Window>
