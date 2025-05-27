@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TSD_BookCollection")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a31c7ffae033ed80373b9417b624e04adc71a48e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e7992216d5f52aec0b27b0a8ab636247114c932a")]
 [assembly: System.Reflection.AssemblyProductAttribute("TSD_BookCollection")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TSD_BookCollection")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
