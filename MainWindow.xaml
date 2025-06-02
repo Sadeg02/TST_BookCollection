@@ -33,6 +33,7 @@
     <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
 
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -40,7 +41,28 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Header" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Margin="10" />
+<Grid Grid.Row="0" Margin="10">
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" /> <!-- Dla logo -->
+        <ColumnDefinition Width="*" />    <!-- Dla nagłówka -->
+    </Grid.ColumnDefinitions>
+
+    <!-- Logo po lewej -->
+    <Image Grid.Column="0" Source="/images/logo.png"
+           Width="100" Height="100"
+           VerticalAlignment="Center"
+           Margin="0,0,10,0"/>
+
+    <!-- Nagłówek wyśrodkowany w dostępnej przestrzeni -->
+    <TextBlock Grid.Column="1"
+               Text="Book Collection"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontWeight="Bold"
+               FontSize="20"/>
+</Grid>
+
+
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
